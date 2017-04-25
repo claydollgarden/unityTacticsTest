@@ -22,6 +22,8 @@ public class GameManager : MonoBehaviour
 
     public bool gameStartFlg = false;
 
+    public GameObject hitEffect;
+
     void Awake()
     {
         instance = this;
@@ -61,6 +63,8 @@ public class GameManager : MonoBehaviour
 
     public void nextTurn()
     {
+        Destroy(GameObject.Find(hitEffect.name + "(Clone)"));
+
         if (currentPlayerIndex + 1 < players.Count)
         {
             currentPlayerIndex++;
@@ -140,7 +144,7 @@ public class GameManager : MonoBehaviour
             if (target != null)
             {
 
-                players[currentPlayerIndex].actionPoints--;
+                //players[currentPlayerIndex].actionPoints--;
                 players[currentPlayerIndex].attacking = true;
 
                 removeTileHighlights();
@@ -157,6 +161,8 @@ public class GameManager : MonoBehaviour
                     target.HP -= amountOfDamage;
 
                     Debug.Log(players[currentPlayerIndex].playerName + " successfuly hit " + target.playerName + " for " + amountOfDamage + " damage!");
+                    Instantiate(hitEffect, players[currentPlayerIndex].transform.position, players[currentPlayerIndex].transform.rotation);
+
                 }
                 else
                 {

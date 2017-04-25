@@ -14,7 +14,6 @@ public class Player : MonoBehaviour
 
     public string playerName = "George";
     public int HP = 25;
-    public int actionPoints = 2;
 
     public Armor headArmor;
     public Armor chestArmor;
@@ -238,7 +237,6 @@ public class Player : MonoBehaviour
             attacking = false;
             GameManager.instance.nextTurn();
         }
-
         //if (actionPoints <= 0)
         //{
         //    actionPoints = 2;

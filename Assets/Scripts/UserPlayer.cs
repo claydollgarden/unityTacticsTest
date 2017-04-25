@@ -38,7 +38,6 @@ public class UserPlayer : Player
                 if (positionQueue.Count == 0)
                 {
                     moving = true;
-                    actionPoints--;
                 }
             }
 
@@ -80,6 +79,10 @@ public class UserPlayer : Player
                     path.Reverse();
                     if (path.Where(x => actualMovement.Contains(x)).Count() > 0) GameManager.instance.moveCurrentPlayer(path.Where(x => actualMovement.Contains(x)).First());
                 }
+            }
+            else if(moving && attacktilesInRange.Where(x => GameManager.instance.players.Where(y => y.GetType() != typeof(UserPlayer) && y.HP > 0 && y != this && y.gridPosition == x.gridPosition).Count() > 0).Count() <= 0)
+            {
+                attacking = true;
             }
         }
 
