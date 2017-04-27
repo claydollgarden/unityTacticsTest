@@ -23,6 +23,7 @@ public class GameManager : MonoBehaviour
     public bool gameStartFlg = false;
 
     public GameObject hitEffect;
+    public GameObject missEffect;
 
     void Awake()
     {
@@ -64,6 +65,7 @@ public class GameManager : MonoBehaviour
     public void nextTurn()
     {
         Destroy(GameObject.Find(hitEffect.name + "(Clone)"));
+        Destroy(GameObject.Find(missEffect.name + "(Clone)"));
 
         if (currentPlayerIndex + 1 < players.Count)
         {
@@ -143,9 +145,8 @@ public class GameManager : MonoBehaviour
 
             if (target != null)
             {
-
-                //players[currentPlayerIndex].actionPoints--;
                 players[currentPlayerIndex].attacking = true;
+                players[currentPlayerIndex].moving = true;
 
                 removeTileHighlights();
 
@@ -161,12 +162,13 @@ public class GameManager : MonoBehaviour
                     target.HP -= amountOfDamage;
 
                     Debug.Log(players[currentPlayerIndex].playerName + " successfuly hit " + target.playerName + " for " + amountOfDamage + " damage!");
-                    Instantiate(hitEffect, players[currentPlayerIndex].transform.position, players[currentPlayerIndex].transform.rotation);
+                    Instantiate(hitEffect, target.transform.position, target.transform.rotation);
 
                 }
                 else
                 {
-                     Debug.Log(players[currentPlayerIndex].playerName + " missed " + target.playerName + "!");
+                    Debug.Log(players[currentPlayerIndex].playerName + " missed " + target.playerName + "!");
+                    Instantiate(missEffect, target.transform.position, target.transform.rotation);
                 }
             }
         }

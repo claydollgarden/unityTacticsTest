@@ -225,25 +225,23 @@ public class Player : MonoBehaviour
 
     public virtual void TurnUpdate()
     {
-        if( moving && attacking)
+        Invoke("WaitForIt", 1);
+    }
+
+    void WaitForIt()
+    {
+        if (moving && attacking)
         {
             moving = false;
             attacking = false;
             GameManager.instance.nextTurn();
         }
-        else if( attacking )
+        else if (attacking)
         {
             moving = false;
             attacking = false;
             GameManager.instance.nextTurn();
         }
-        //if (actionPoints <= 0)
-        //{
-        //    actionPoints = 2;
-        //    moving = false;
-        //    attacking = false;
-        //    GameManager.instance.nextTurn();
-        //}
     }
 
     public virtual void TurnOnGUI()

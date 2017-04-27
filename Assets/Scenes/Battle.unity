@@ -571,6 +571,7 @@ MonoBehaviour:
   currentPlayerIndex: 0
   gameStartFlg: 0
   hitEffect: {fileID: 100000, guid: 8e1dcf1924b1945fcaab73df0affd2ab, type: 2}
+  missEffect: {fileID: 100000, guid: d321a98408cfc4e0299808f65181aab4, type: 2}
 --- !u!4 &951985770
 Transform:
   m_ObjectHideFlags: 0
