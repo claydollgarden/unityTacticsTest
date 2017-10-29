@@ -30,9 +30,11 @@ public class UserPlayer : Player
         if (positionQueue.Count > 0)
         {
             transform.position += (positionQueue[0] - transform.position).normalized * moveSpeed * Time.deltaTime;
-
             if (Vector3.Distance(positionQueue[0], transform.position) <= 0.1f)
             {
+				transform.rotation = Quaternion.LookRotation ((positionQueue [0] - transform.position).normalized, Vector3.up);
+				Debug.Log( "forwardVector" + Quaternion.LookRotation((positionQueue[0] - transform.position).normalized, Vector3.up));
+				
                 transform.position = positionQueue[0];
                 positionQueue.RemoveAt(0);
                 if (positionQueue.Count == 0)

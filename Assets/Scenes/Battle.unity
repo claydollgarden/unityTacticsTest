@@ -564,7 +564,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   TilePrefab: {fileID: 162402, guid: c701365cb10c36344a8100d7aa8efd2f, type: 2}
   UserPlayerPrefab: {fileID: 125978, guid: 7921ab51c17f6054299ec7d16f3d7dff, type: 2}
-  AIPlayerPrefab: {fileID: 173114, guid: 1f2662ecb44dd1f4bb89483e27cf60f2, type: 2}
+  AIPlayerPrefab: {fileID: 1007341172753696, guid: 4ab6122e848a04f90bc8cdcb8355891f,
+    type: 2}
   mapSizeX: 20
   mapSizeY: 11
   players: []

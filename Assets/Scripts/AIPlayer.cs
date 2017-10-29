@@ -5,11 +5,14 @@ using System.Linq;
 
 public class AIPlayer : Player
 {
+	Animator anim;
 
     // Use this for initialization
     void Start()
     {
+		anim = this.GetComponent<Animator>();
 
+		startAnimaion("WAIT01");
     }
 
     // Update is called once per frame
@@ -17,10 +20,10 @@ public class AIPlayer : Player
     {
         if (GameManager.instance.players[GameManager.instance.currentPlayerIndex] == this)
         {
-            transform.GetComponent<Renderer>().material.color = Color.green;
+			//this.GetComponent<Renderer>().material.color = Color.green;
         }
         else {
-            transform.GetComponent<Renderer>().material.color = Color.white;
+			//this.GetComponent<Renderer>().material.color = Color.white;
         }
         base.Update();
     }
@@ -33,6 +36,8 @@ public class AIPlayer : Player
 
             if (Vector3.Distance(positionQueue[0], transform.position) <= 0.1f)
             {
+				transform.rotation = Quaternion.LookRotation ((positionQueue [0] - transform.position).normalized, Vector3.up);
+				Debug.Log( "forwardVector" + Quaternion.LookRotation((positionQueue[0] - transform.position).normalized, Vector3.up));
                 transform.position = positionQueue[0];
                 positionQueue.RemoveAt(0);
                 if (positionQueue.Count == 0)
@@ -76,7 +81,11 @@ public class AIPlayer : Player
                 {
                     List<Tile> actualMovement = TileHighlight.FindHighlight(GameManager.instance.map[(int)gridPosition.x][(int)gridPosition.y], movementPerActionPoint, GameManager.instance.players.Where(x => x.gridPosition != gridPosition).Select(x => x.gridPosition).ToArray());
                     path.Reverse();
-                    if (path.Where(x => actualMovement.Contains(x)).Count() > 0) GameManager.instance.moveCurrentPlayer(path.Where(x => actualMovement.Contains(x)).First());
+
+					if (path.Where (x => actualMovement.Contains (x)).Count () > 0) 
+					{
+						GameManager.instance.moveCurrentPlayer (path.Where (x => actualMovement.Contains (x)).First ());
+					}
                 }
             }
             else if (moving && attacktilesInRange.Where(x => GameManager.instance.players.Where(y => y.GetType() != typeof(AIPlayer) && y.HP > 0 && y != this && y.gridPosition == x.gridPosition).Count() > 0).Count() <= 0)
@@ -92,4 +101,11 @@ public class AIPlayer : Player
     {
         base.TurnOnGUI();
     }
+
+	public void startAnimaion(string AnimationName)
+	{
+		anim.Play (AnimationName);
+		//anim.SetBool(AnimationName, false);
+	}
+
 }

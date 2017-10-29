@@ -119,7 +119,7 @@ public class GameManager : MonoBehaviour
             foreach (Tile t in TilePathFinder.FindPath(map[(int)players[currentPlayerIndex].gridPosition.x][(int)players[currentPlayerIndex].gridPosition.y], destTile, players.Where(x => x.gridPosition != destTile.gridPosition && x.gridPosition != players[currentPlayerIndex].gridPosition).Select(x => x.gridPosition).ToArray()))
             {
                 players[currentPlayerIndex].positionQueue.Add(map[(int)t.gridPosition.x][(int)t.gridPosition.y].transform.position + 1.5f * Vector3.up);
-                Debug.Log("(" + players[currentPlayerIndex].positionQueue[players[currentPlayerIndex].positionQueue.Count - 1].x + "," + players[currentPlayerIndex].positionQueue[players[currentPlayerIndex].positionQueue.Count - 1].y + ")");
+				Debug.Log("(" + players[currentPlayerIndex].positionQueue[players[currentPlayerIndex].positionQueue.Count - 1].x + "," + players[currentPlayerIndex].positionQueue[players[currentPlayerIndex].positionQueue.Count - 1].y + "," + players[currentPlayerIndex].positionQueue[players[currentPlayerIndex].positionQueue.Count - 1].z+ ")");
             }
             players[currentPlayerIndex].gridPosition = destTile.gridPosition;
 
@@ -211,6 +211,8 @@ public class GameManager : MonoBehaviour
 
     void generatePlayers()
     {
+		float char_position_y = 1.5f;
+
         UserPlayer player;
 
         player = ((GameObject)Instantiate(UserPlayerPrefab, new Vector3(0 - Mathf.Floor(mapSizeX / 2), 1.5f, -0 + Mathf.Floor(mapSizeY / 2)), Quaternion.Euler(new Vector3()))).GetComponent<UserPlayer>();
@@ -231,19 +233,19 @@ public class GameManager : MonoBehaviour
         player.handWeapons.Add(Weapon.FromKey(WeaponKey.LongSword));
         players.Add(player);
 
-        AIPlayer aiplayer = ((GameObject)Instantiate(AIPlayerPrefab, new Vector3(0 - Mathf.Floor(mapSizeX / 2),1.5f, -10 + Mathf.Floor(mapSizeY / 2)), Quaternion.Euler(new Vector3()))).GetComponent<AIPlayer>();
+		AIPlayer aiplayer = ((GameObject)Instantiate(AIPlayerPrefab, new Vector3(0 - Mathf.Floor(mapSizeX / 2),char_position_y, -10 + Mathf.Floor(mapSizeY / 2)), Quaternion.Euler(new Vector3()))).GetComponent<AIPlayer>();
         aiplayer.gridPosition = new Vector2(0, 10);
         aiplayer.playerName = "kjh";
         aiplayer.handWeapons.Add(Weapon.FromKey(WeaponKey.LongSword));
         players.Add(aiplayer);
 
-        aiplayer = ((GameObject)Instantiate(AIPlayerPrefab, new Vector3(1 - Mathf.Floor(mapSizeX / 2), 1.5f, -10 + Mathf.Floor(mapSizeY / 2)), Quaternion.Euler(new Vector3()))).GetComponent<AIPlayer>();
+		aiplayer = ((GameObject)Instantiate(AIPlayerPrefab, new Vector3(1 - Mathf.Floor(mapSizeX / 2), char_position_y, -10 + Mathf.Floor(mapSizeY / 2)), Quaternion.Euler(new Vector3()))).GetComponent<AIPlayer>();
         aiplayer.gridPosition = new Vector2(1, 10);
         aiplayer.playerName = "cyh";
         aiplayer.handWeapons.Add(Weapon.FromKey(WeaponKey.LongSword));
         players.Add(aiplayer);
 
-        aiplayer = ((GameObject)Instantiate(AIPlayerPrefab, new Vector3(4 - Mathf.Floor(mapSizeX / 2), 1.5f, -8 + Mathf.Floor(mapSizeY / 2)), Quaternion.Euler(new Vector3()))).GetComponent<AIPlayer>();
+		aiplayer = ((GameObject)Instantiate(AIPlayerPrefab, new Vector3(4 - Mathf.Floor(mapSizeX / 2), char_position_y, -8 + Mathf.Floor(mapSizeY / 2)), Quaternion.Euler(new Vector3()))).GetComponent<AIPlayer>();
         aiplayer.gridPosition = new Vector2(4, 8);
         aiplayer.playerName = "jyj";
         aiplayer.handWeapons.Add(Weapon.FromKey(WeaponKey.LongSword));
