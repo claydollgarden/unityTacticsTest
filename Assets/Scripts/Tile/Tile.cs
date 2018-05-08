@@ -152,7 +152,7 @@ public class Tile : MonoBehaviour
 
     public void generateVisuals()
     {
-        GameObject container = transform.FindChild("Visuals").gameObject;
+        GameObject container = transform.Find("Visuals").gameObject;
         //initially remove all children
         for (int i = 0; i < container.transform.childCount; i++)
         {

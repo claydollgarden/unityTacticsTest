@@ -8,7 +8,6 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
 
-    public GameObject TilePrefab;
     public GameObject UserPlayerPrefab;
     public GameObject AIPlayerPrefab;
 
@@ -29,7 +28,7 @@ public class GameManager : MonoBehaviour
     {
         instance = this;
 
-        mapTransform = transform.FindChild("Map");
+        mapTransform = transform.Find("Map");
     }
 
     // Use this for initialization

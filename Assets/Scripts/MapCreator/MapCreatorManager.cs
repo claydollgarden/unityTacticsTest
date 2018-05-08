@@ -23,7 +23,7 @@ public class MapCreatorManager : MonoBehaviour {
     {
         instance = this;
 
-        mapTransform = transform.FindChild("Map");
+        mapTransform = transform.Find("Map");
 
         generatBlankeMap(mapSizeX, mapSizeY);
     }

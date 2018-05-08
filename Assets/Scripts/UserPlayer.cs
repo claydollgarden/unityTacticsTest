@@ -5,11 +5,12 @@ using System.Linq;
 
 public class UserPlayer : Player
 {
+	public GameObject nowPlayingUI;
 
     // Use this for initialization
     void Start()
     {
-
+		nowPlayingUI.SetActive(false);
     }
 
     // Update is called once per frame
@@ -18,9 +19,12 @@ public class UserPlayer : Player
         if (GameManager.instance.players[GameManager.instance.currentPlayerIndex] == this)
         {
             transform.GetComponent<Renderer>().material.color = Color.green;
+			nowPlayingUI.SetActive(true);
         }
-        else {
+        else 
+		{
             transform.GetComponent<Renderer>().material.color = Color.white;
+			nowPlayingUI.SetActive(false);
         }
         base.Update();
     }
